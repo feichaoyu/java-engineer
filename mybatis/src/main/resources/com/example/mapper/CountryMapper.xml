@@ -14,4 +14,9 @@
         from country
     </select>
 
+    <select id="selectBy" resultType="com.example.model.Country">
+        select id, countryname, countrycode
+        from country where id = #{id} and countryname = #{name} and countrycode = '${code}'
+    </select>
+
 </mapper>

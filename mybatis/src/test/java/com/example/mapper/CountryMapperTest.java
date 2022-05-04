@@ -4,6 +4,8 @@ import com.example.model.Country;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CountryMapperTest extends BaseMapperTest {
@@ -22,6 +24,15 @@ public class CountryMapperTest extends BaseMapperTest {
         CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
         List<Country> countryList = mapper.selectAll();
         printCountryList(countryList);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelect() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Country country = mapper.selectBy(1L, "中国", "CN");
+        printCountryList(Collections.singletonList(country));
         sqlSession.close();
     }
 
