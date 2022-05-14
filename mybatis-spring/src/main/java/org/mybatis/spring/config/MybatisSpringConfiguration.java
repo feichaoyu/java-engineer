@@ -5,7 +5,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
@@ -25,8 +24,7 @@ public class MybatisSpringConfiguration {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource[] resources = resolver.getResources("org/mybatis/spring/mapper/*.xml");
-        sqlSessionFactoryBean.setMapperLocations(resources);
+        sqlSessionFactoryBean.setConfigLocation(resolver.getResource("mybatis-config.xml"));
         sqlSessionFactoryBean.setTypeAliasesPackage("org.mybatis.spring.model");
         return sqlSessionFactoryBean;
     }
@@ -34,7 +32,6 @@ public class MybatisSpringConfiguration {
     @Bean
     public DataSource dataSource() {
         UnpooledDataSource dataSource = new UnpooledDataSource();
-        // 可以从配置文件取
         dataSource.setDriver("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/play-with-mybatis");
         dataSource.setUsername("root");
