@@ -10,10 +10,5 @@ import java.io.Reader;
 
 @Configuration
 public class MybatisSpringConfiguration {
-
-    @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
-        Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-        return new SqlSessionFactoryBuilder().build(reader);
-    }
+    
 }
