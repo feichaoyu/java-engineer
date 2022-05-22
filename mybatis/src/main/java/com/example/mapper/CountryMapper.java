@@ -16,4 +16,8 @@ public interface CountryMapper {
     Country selectBy3(Long id, String name, String code);
 
     Country selectBy4(@Param("id") Long id, @Param("name") String name, @Param("code") String code);
+
+    Country selectBy5(Country country);
+
+    Country selectBy6(@Param("country") Country country);
 }

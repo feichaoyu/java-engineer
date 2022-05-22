@@ -34,4 +34,14 @@
         from country where id = #{id} and countryname = #{name} and countrycode = #{code}
     </select>
 
+    <select id="selectBy5" resultType="Country">
+        select id, countryname, countrycode
+        from country where id = #{id} and countryname = #{countryname} and countrycode = #{countrycode}
+    </select>
+
+    <select id="selectBy6" resultType="Country">
+        select id, countryname, countrycode
+        from country where id = #{country.id} and countryname = #{country.countryname} and countrycode = #{country.countrycode}
+    </select>
+
 </mapper>

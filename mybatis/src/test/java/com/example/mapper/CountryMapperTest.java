@@ -68,6 +68,33 @@ public class CountryMapperTest extends BaseMapperTest {
         sqlSession.close();
     }
 
+    @Test
+    public void testSelectBy5() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Country params = new Country();
+        params.setId(1L);
+        params.setCountryname("中国");
+        params.setCountrycode("CN");
+        Country country = mapper.selectBy5(params);
+        printCountryList(Collections.singletonList(country));
+        sqlSession.close();
+    }
+
+
+    @Test
+    public void testSelectBy6() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Country params = new Country();
+        params.setId(1L);
+        params.setCountryname("中国");
+        params.setCountrycode("CN");
+        Country country = mapper.selectBy6(params);
+        printCountryList(Collections.singletonList(country));
+        sqlSession.close();
+    }
+
     private void printCountryList(List<Country> countryList) {
         for (Country country : countryList) {
             System.out.printf("%-4d%4s%4s\n", country.getId(), country.getCountryname(), country.getCountrycode());
