@@ -4,9 +4,10 @@ import com.example.model.Country;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CountryMapperTest extends BaseMapperTest {
 
@@ -28,10 +29,41 @@ public class CountryMapperTest extends BaseMapperTest {
     }
 
     @Test
-    public void testSelect() {
+    public void testSelectBy1() {
         SqlSession sqlSession = getSqlSession();
         CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
-        Country country = mapper.selectBy(1L, "中国", "CN");
+        Country country = mapper.selectBy1(1L);
+        printCountryList(Collections.singletonList(country));
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelectBy2() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Map<String, Object> paramsMap = new HashMap<>();
+        paramsMap.put("id", 1L);
+        paramsMap.put("name", "中国");
+        paramsMap.put("code", "CN");
+        Country country = mapper.selectBy2(paramsMap);
+        printCountryList(Collections.singletonList(country));
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelectBy3() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Country country = mapper.selectBy3(1L, "中国", "CN");
+        printCountryList(Collections.singletonList(country));
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelectBy4() {
+        SqlSession sqlSession = getSqlSession();
+        CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
+        Country country = mapper.selectBy4(1L, "中国", "CN");
         printCountryList(Collections.singletonList(country));
         sqlSession.close();
     }

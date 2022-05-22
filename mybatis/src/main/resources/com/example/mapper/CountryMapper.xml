@@ -14,9 +14,24 @@
         from country
     </select>
 
-    <select id="selectBy" resultType="Country">
+    <select id="selectBy1" resultType="Country">
         select id, countryname, countrycode
-        from country where id = #{id} and countryname = #{name} and countrycode = '${code}'
+        from country where id = #{666}
+    </select>
+
+    <select id="selectBy2" resultType="Country">
+        select id, countryname, countrycode
+        from country where id = #{id} and countryname = #{name} and countrycode = #{code}
+    </select>
+
+    <select id="selectBy3" resultType="Country">
+        select id, countryname, countrycode
+        from country where id = #{0} and countryname = #{1} and countrycode = #{2}
+    </select>
+
+    <select id="selectBy4" resultType="Country">
+        select id, countryname, countrycode
+        from country where id = #{id} and countryname = #{name} and countrycode = #{code}
     </select>
 
 </mapper>
